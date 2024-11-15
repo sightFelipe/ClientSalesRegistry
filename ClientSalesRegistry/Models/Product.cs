@@ -16,7 +16,9 @@ namespace ClientSalesRegistry.Models
         [Range(0.01, double.MaxValue, ErrorMessage = "El precio sin impuestos debe ser un valor positivo.")]
         public decimal PriceWithoutTax { get; set; }
 
-        public decimal PriceWithTax => PriceWithoutTax * 1.19m;
+       
+        [Column("PriceWithTax")]
+        public decimal PriceWithTax { get; set; } 
 
         public override string ToString()
         {

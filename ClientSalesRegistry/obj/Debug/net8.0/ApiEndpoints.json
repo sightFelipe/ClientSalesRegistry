@@ -186,5 +186,37 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ClientSalesRegistry.Controllers.SalesController",
+    "Method": "GetSalesByCustomer",
+    "RelativePath": "api/sales/customer/{document}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "document",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ClientSalesRegistry.Controllers.SalesController",
+    "Method": "RegisterSale",
+    "RelativePath": "api/sales/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "saleDto",
+        "Type": "ClientSalesRegistry.DTOs.SaleDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

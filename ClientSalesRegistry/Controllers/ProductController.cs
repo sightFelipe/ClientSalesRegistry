@@ -1,5 +1,5 @@
 ﻿using ClientSalesRegistry.Services.ProductService;
-using ClientSalesRegistry.DTOs; // Asegúrate de incluir el espacio de nombres del DTO
+using ClientSalesRegistry.DTOs; 
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClientSalesRegistry.Controllers
@@ -48,7 +48,7 @@ namespace ClientSalesRegistry.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ProductDto>> Add([FromBody] ProductDto productDto) // Cambiado a ProductDto
+        public async Task<ActionResult<ProductDto>> Add([FromBody] ProductDto productDto) 
         {
             if (productDto == null)
             {
@@ -57,8 +57,8 @@ namespace ClientSalesRegistry.Controllers
 
             try
             {
-                await _productService.AddAsync(productDto); // Cambiado a productDto
-                return CreatedAtAction(nameof(GetById), new { id = productDto.ProductId }, productDto); // Cambiado a productDto
+                await _productService.AddAsync(productDto); 
+                return CreatedAtAction(nameof(GetById), new { id = productDto.ProductId }, productDto); 
             }
             catch (ArgumentException ex)
             {
@@ -66,7 +66,7 @@ namespace ClientSalesRegistry.Controllers
             }
             catch (Exception ex)
             {
-                // Aquí puedes agregar más información o registro
+               
                 return StatusCode(500, $"Error interno del servidor: {ex.Message}");
             }
         }
@@ -79,7 +79,7 @@ namespace ClientSalesRegistry.Controllers
                 return BadRequest("El producto es nulo.");
             }
 
-            // Asigna el ID desde la URL al DTO
+            
             productDto.ProductId = id;
 
             try

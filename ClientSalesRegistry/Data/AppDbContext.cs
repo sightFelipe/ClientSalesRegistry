@@ -26,11 +26,34 @@ namespace ClientSalesRegistry.Data
             modelBuilder.Entity<Customer>()
                 .Property(c => c.Document)
                 .IsRequired()
-                .HasMaxLength(50); 
+                .HasMaxLength(50);
 
             modelBuilder.Entity<Customer>()
                 .HasIndex(c => c.Document)
                 .IsUnique();
+
+            modelBuilder.Entity<Product>()
+                .Property(p => p.PriceWithTax)
+                .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<Sale>()
+               .HasMany(s => s.SaleItems)
+               .WithOne(si => si.Sale)
+               .HasForeignKey(si => si.SaleId);
+
+            modelBuilder.Entity<SaleItem>()
+                .HasOne(si => si.Product)
+                .WithMany()
+                .HasForeignKey(si => si.ProductId);
+
+           
+            modelBuilder.Entity<SaleItem>()
+                .Property(si => si.TotalPriceWithoutTax)
+                .HasColumnType("decimal(18, 2)");
+
+            modelBuilder.Entity<SaleItem>()
+                .Property(si => si.TotalPriceWithTax)
+                .HasColumnType("decimal(18, 2)");
         }
     }
 }

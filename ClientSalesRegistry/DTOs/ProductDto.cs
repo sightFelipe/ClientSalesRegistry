@@ -16,6 +16,6 @@ namespace ClientSalesRegistry.DTOs
         [Range(0, double.MaxValue, ErrorMessage = "El precio sin impuestos debe ser mayor o igual a cero.")]
         public decimal PriceWithoutTax { get; set; }
 
-        public decimal PriceWithTax => PriceWithoutTax * 1.19m;
+        public decimal PriceWithTax { get; set; }  
     }
 }

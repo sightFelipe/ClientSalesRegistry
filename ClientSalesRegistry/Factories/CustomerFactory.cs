@@ -1,16 +1,16 @@
 ﻿using ClientSalesRegistry.DTOs;
 using ClientSalesRegistry.Models;
+using ClientSalesRegistry.Repositories.CustomerRepository; 
 using System;
 using System.Text.RegularExpressions;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Threading.Tasks;
 
 namespace ClientSalesRegistry.Factories
 {
     public static class CustomerFactory
     {
-        public static Customer CreateCustomer(CustomerDto customerDto)
+        public static async Task<Customer> CreateCustomerAsync(CustomerDto customerDto, ICustomerRepository customerRepository)
         {
-            // Validaciones
             if (string.IsNullOrWhiteSpace(customerDto.Document))
             {
                 throw new ArgumentException("El documento es obligatorio.");
@@ -31,15 +31,19 @@ namespace ClientSalesRegistry.Factories
                 throw new ArgumentException("El tipo de correo debe ser 'P' (personal) o 'W' (trabajo).");
             }
 
-            if (customerDto.EmailType == default(char)) 
+            if (customerDto.EmailType == default(char))
             {
                 throw new ArgumentException("El tipo de correo no puede estar vacío.");
             }
 
-
             if (!IsValidEmail(customerDto.Email))
             {
                 throw new ArgumentException("El formato del correo electrónico no es válido.");
+            }
+
+            if (await customerRepository.IsEmailInUse(customerDto.Email))
+            {
+                throw new ArgumentException("El correo electrónico ya está en uso por otro cliente.");
             }
 
             return new Customer

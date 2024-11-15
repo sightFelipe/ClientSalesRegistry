@@ -88,15 +88,16 @@ namespace ClientSalesRegistry.Services.ProductService.Impl
                 var product = new Product
                 {
                     Name = productDto.Name,
-                    PriceWithoutTax = productDto.PriceWithoutTax
-                   
+                    PriceWithoutTax = productDto.PriceWithoutTax,
+                    PriceWithTax = productDto.PriceWithoutTax * 1.19m 
                 };
 
-                await _productRepository.AddAsync(product);
-
-              
-                productDto.ProductId = product.Id; 
+                await _productRepository.AddAsync(product); 
                 _logger.LogInformation("Producto agregado: {productName}", product.Name);
+
+                
+                productDto.ProductId = product.Id; 
+                productDto.PriceWithTax = product.PriceWithTax; 
             }
             catch (Exception ex)
             {

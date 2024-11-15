@@ -50,5 +50,9 @@ namespace ClientSalesRegistry.Repositories.CustomerRepository
                 await _context.SaveChangesAsync();
             }
         }
+         public async Task<bool> IsEmailInUse(string email)
+        {
+            return await _context.Customers.AnyAsync(c => c.Email.ToLower() == email.ToLower());
+        }
     }
 }

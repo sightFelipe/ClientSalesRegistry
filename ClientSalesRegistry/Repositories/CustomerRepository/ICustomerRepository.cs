@@ -1,4 +1,5 @@
 ﻿using ClientSalesRegistry.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClientSalesRegistry.Repositories.CustomerRepository
 {
@@ -9,5 +10,6 @@ namespace ClientSalesRegistry.Repositories.CustomerRepository
         Task<IEnumerable<Customer>> GetAllAsync();
         Task<Customer> UpdateAsync(Customer customer);
         Task DeleteAsync(string document);
+        Task<bool> IsEmailInUse(string email);
     }
 }

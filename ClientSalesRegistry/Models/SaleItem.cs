@@ -24,5 +24,8 @@ namespace ClientSalesRegistry.Models
         [Required(ErrorMessage = "La cantidad es obligatoria.")]
         [Range(1, int.MaxValue, ErrorMessage = "La cantidad debe ser un valor positivo.")]
         public int Quantity { get; set; }
+
+        public decimal TotalPriceWithoutTax { get; set; }
+        public decimal TotalPriceWithTax { get; set; }
     }
 }

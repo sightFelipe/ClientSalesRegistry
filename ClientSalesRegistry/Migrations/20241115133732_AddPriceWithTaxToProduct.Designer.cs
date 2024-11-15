@@ -4,6 +4,7 @@ using ClientSalesRegistry.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClientSalesRegistry.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241115133732_AddPriceWithTaxToProduct")]
+    partial class AddPriceWithTaxToProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -119,12 +122,6 @@ namespace ClientSalesRegistry.Migrations
 
                     b.Property<int>("SaleId")
                         .HasColumnType("int");
-
-                    b.Property<decimal>("TotalPriceWithTax")
-                        .HasColumnType("decimal(18, 2)");
-
-                    b.Property<decimal>("TotalPriceWithoutTax")
-                        .HasColumnType("decimal(18, 2)");
 
                     b.HasKey("Id");
 

@@ -1,12 +1,37 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\JUANCHO\\source\\repos\\ClientSalesRegistry\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FCEA51DF-CFF6-4B43-B8DD-5334437CFC02}|ClientSalesRegistry\\ClientSalesRegistry.csproj|c:\\users\\juancho\\source\\repos\\clientsalesregistry\\clientsalesregistry\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCEA51DF-CFF6-4B43-B8DD-5334437CFC02}|ClientSalesRegistry\\ClientSalesRegistry.csproj|solutionrelative:clientsalesregistry\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\JUANCHO\\source\\repos\\ClientSalesRegistry\\ClientSalesRegistry\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "ClientSalesRegistry\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\JUANCHO\\source\\repos\\ClientSalesRegistry\\ClientSalesRegistry\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "ClientSalesRegistry\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAUwDoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T19:19:35.317Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
