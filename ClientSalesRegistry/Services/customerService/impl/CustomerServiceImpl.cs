@@ -1,7 +1,7 @@
 ﻿using ClientSalesRegistry.DTOs;
-using ClientSalesRegistry.Repositories;
 using ClientSalesRegistry.Factories;
 using ClientSalesRegistry.Models;
+using ClientSalesRegistry.Repositories.CustomerRepository;
 
 namespace ClientSalesRegistry.Services.customerService.impl
 {

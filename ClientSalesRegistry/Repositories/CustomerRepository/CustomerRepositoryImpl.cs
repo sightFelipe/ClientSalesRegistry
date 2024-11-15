@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using ClientSalesRegistry.Models;
 using ClientSalesRegistry.Data;
 
-namespace ClientSalesRegistry.Repositories
+namespace ClientSalesRegistry.Repositories.CustomerRepository
 {
     public class CustomerRepository : ICustomerRepository
     {
@@ -23,10 +23,10 @@ namespace ClientSalesRegistry.Repositories
             return customer;
         }
 
-        public async Task<Customer> GetByDocumentAsync(string document) 
+        public async Task<Customer> GetByDocumentAsync(string document)
         {
             return await _context.Customers
-                .FirstOrDefaultAsync(c => c.Document == document); 
+                .FirstOrDefaultAsync(c => c.Document == document);
         }
 
         public async Task<IEnumerable<Customer>> GetAllAsync()
@@ -41,7 +41,7 @@ namespace ClientSalesRegistry.Repositories
             return customer;
         }
 
-        public async Task DeleteAsync(string document) 
+        public async Task DeleteAsync(string document)
         {
             var customer = await GetByDocumentAsync(document);
             if (customer != null)
