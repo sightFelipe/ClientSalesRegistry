@@ -26,135 +26,140 @@ namespace ClientSalesRegistry.Migrations
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("ClientSalesRegistry.Models.Customer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                b.Property<string>("Email")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("Id");
+                // Agregar el nuevo atributo EmailType
+                b.Property<char>("EmailType")
+                    .IsRequired()
+                    .HasColumnType("char(1)"); // Asegúrate de que sea un carácter
 
-                    b.ToTable("Customer", (string)null);
-                });
+                b.HasKey("Id");
+
+                b.ToTable("Customer", (string)null);
+            });
 
             modelBuilder.Entity("ClientSalesRegistry.Models.Product", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnType("nvarchar(100)");
 
-                    b.Property<decimal>("PriceWithoutTax")
-                        .HasColumnType("decimal(18,2)");
+                b.Property<decimal>("PriceWithoutTax")
+                    .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("Product", (string)null);
-                });
-
-            modelBuilder.Entity("ClientSalesRegistry.Models.Sale", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("SaleDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.ToTable("Sale", (string)null);
-                });
-
-            modelBuilder.Entity("ClientSalesRegistry.Models.SaleItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SaleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("SaleId");
-
-                    b.ToTable("SaleItem", (string)null);
-                });
+                b.ToTable("Product", (string)null);
+            });
 
             modelBuilder.Entity("ClientSalesRegistry.Models.Sale", b =>
-                {
-                    b.HasOne("ClientSalesRegistry.Models.Customer", "Customer")
-                        .WithMany("Sales")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    b.Navigation("Customer");
-                });
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                b.Property<int>("CustomerId")
+                    .HasColumnType("int");
+
+                b.Property<DateTime>("SaleDate")
+                    .HasColumnType("datetime2");
+
+                b.HasKey("Id");
+
+                b.HasIndex("CustomerId");
+
+                b.ToTable("Sale", (string)null);
+            });
 
             modelBuilder.Entity("ClientSalesRegistry.Models.SaleItem", b =>
-                {
-                    b.HasOne("ClientSalesRegistry.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    b.HasOne("ClientSalesRegistry.Models.Sale", "Sale")
-                        .WithMany("SaleItems")
-                        .HasForeignKey("SaleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Navigation("Product");
+                b.Property<int>("ProductId")
+                    .HasColumnType("int");
 
-                    b.Navigation("Sale");
-                });
+                b.Property<int>("Quantity")
+                    .HasColumnType("int");
+
+                b.Property<int>("SaleId")
+                    .HasColumnType("int");
+
+                b.HasKey("Id");
+
+                b.HasIndex("ProductId");
+
+                b.HasIndex("SaleId");
+
+                b.ToTable("SaleItem", (string)null);
+            });
+
+            modelBuilder.Entity("ClientSalesRegistry.Models.Sale", b =>
+            {
+                b.HasOne("ClientSalesRegistry.Models.Customer", "Customer")
+                    .WithMany("Sales")
+                    .HasForeignKey("CustomerId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+
+                b.Navigation("Customer");
+            });
+
+            modelBuilder.Entity("ClientSalesRegistry.Models.SaleItem", b =>
+            {
+                b.HasOne("ClientSalesRegistry.Models.Product", "Product")
+                    .WithMany()
+                    .HasForeignKey("ProductId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+
+                b.HasOne("ClientSalesRegistry.Models.Sale", "Sale")
+                    .WithMany("SaleItems")
+                    .HasForeignKey("SaleId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+
+                b.Navigation("Product");
+
+                b.Navigation("Sale");
+            });
 
             modelBuilder.Entity("ClientSalesRegistry.Models.Customer", b =>
-                {
-                    b.Navigation("Sales");
-                });
+            {
+                b.Navigation("Sales");
+            });
 
             modelBuilder.Entity("ClientSalesRegistry.Models.Sale", b =>
-                {
-                    b.Navigation("SaleItems");
-                });
+            {
+                b.Navigation("SaleItems");
+            });
 #pragma warning restore 612, 618
         }
     }

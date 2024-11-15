@@ -30,10 +30,19 @@ namespace ClientSalesRegistry.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Document")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("EmailType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -41,6 +50,9 @@ namespace ClientSalesRegistry.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Document")
+                        .IsUnique();
 
                     b.ToTable("Customer", (string)null);
                 });
@@ -59,7 +71,7 @@ namespace ClientSalesRegistry.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<decimal>("PriceWithoutTax")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.HasKey("Id");
 
